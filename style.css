@@ -1,0 +1,182 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.top_left_brand {
+    position: absolute;
+    top: 24px;
+    left: 32px;
+}
+
+.brand_logo {
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #4f46e5; /* Primary brand color */
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, color 0.2s ease;
+    display: inline-block;
+}
+
+.brand_logo:hover {
+    color: #4338ca;
+    transform: scale(1.03);
+}
+
+/* Container card styling */
+.sign_up_container {
+    background: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Form element spacing */
+#form_sign_up label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #333333;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+
+#form_sign_up input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus state for inputs */
+#form_sign_up input[type="text"]:focus {
+    border-color: #4f46e5;
+    box-shadow: 0 0 5px rgba(79, 70, 229, 0.3);
+    outline: none;
+}
+
+/* Submit button styling */
+#form_sign_up input[type="submit"] {
+    width: 100%;
+    background-color: #4f46e5;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 24px;
+}
+
+/* Hover effect for the submit button */
+#form_sign_up input[type="submit"]:hover {
+    background-color: #4338ca;
+}
+
+.hero_container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+/* --- Card Box --- */
+.hero_card {
+    background: #ffffff;
+    padding: 48px 36px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    width: 100%;
+}
+
+.logo_badge {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.hero_card h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 12px;
+}
+
+.hero_card h1 span {
+    color: #4f46e5; /* Primary accent color */
+}
+
+.description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #64748b;
+    margin-bottom: 32px;
+}
+
+/* --- Buttons --- */
+.cta_group {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.2s ease-in-out;
+    display: inline-block;
+}
+
+/* Primary Button (Sign Up) */
+.btn_primary {
+    background-color: #4f46e5;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+}
+
+.btn_primary:hover {
+    background-color: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.35);
+}
+
+/* Secondary Button (Sign In) */
+.btn_secondary {
+    background-color: #f1f5f9;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+}
+
+.btn_secondary:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    transform: translateY(-2px);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 16px;
+    font-size: 13px;
+    color: #94a3b8;
+}
