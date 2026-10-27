@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Archive</title>
+    <title>Log In - Archive</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Top Left Branding / Home Link -->
     <header class="top_left_brand">
-        <a href="home.html" class="brand_logo">ARCHIVE LEDGER</a>
+        <a href="index.html" class="brand_logo">ARCHIVE LEDGER</a>
     </header>
 
-    <!-- Sign Up Form Container -->
+    <!-- Log In Form Container -->
     <main class="page_wrapper">
         <div class="sign_up_container">
             <h2>Welcome</h2>
-            <p class="subtitle">Please Log In your account</p>
+            <p class="subtitle">Please Log In to your account</p>
 
-            <form id="form_sign_up">
-                <label for="emailadd_form">Email Address</label>
-                <input type="text" id="emailadd_form" name="emailadd_form" placeholder="you@example.com">
+            <form id="login-form">
+                <label for="login-email">Email Address</label>
+                <input type="email" id="login-email" name="email" placeholder="you@example.com" required>
 
-                <label for="pass_form">Password</label><br>
-                <input type="password" id="pass_form" name="pass_form" placeholder="••••••••"><br>
+                <label for="login-password">Password</label><br>
+                <input type="password" id="login-password" name="password" placeholder="••••••••" required><br>
 
-                <input type="submit" value="Log in">
+                <input type="submit" value="Log In">
             </form>
 
-            <a href="sign_in.html">Forgot password?</a>
+            <p class="auth_redirect">Don't have an account? <a href="sign_up.html">Sign Up</a></p>
         </div>
     </main>
 
+    <script type="module" src="script.js"></script>
 </body>
 </html>

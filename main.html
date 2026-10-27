@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Layout</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <script type="module" src="script.js"></script>
+    <div class="container">
+        <header>
+            <a href="index.html" class="brand_logo">ARCHIVE LEDGER</a>
+        
+            <div class="header-left">
+                <img src="d_silhouette[2].jpg" alt="Profile Picture" class="profile-pic">
+                <div class="welcome-text">Welcome, User!</div>
+            </div>
+            <div class="drop">
+                <button class="menu-btn" aria-label="Main Menu" onclick="toggleDropdown()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div id="dropdown-menu" class="dropdown-content">
+                    <a href="index.html">Dark Mode</a>
+                    <a href="marked.html">Log out</a>
+                 </div>
+            </div>
+        </header>
+
+        <div class="layout-wrapper">
+            <aside class="sidebar">
+                <div class="sidebar-brand">
+                    <h2>Book to store</h2>
+                </div>
+                <form class="input_book">
+                    <div class="form-group">
+                        <label for="book_name">Name of the Book</label>
+                        <input type="text" id="book_name" name="book_name" placeholder="Enter book name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" id="author" name="author" placeholder="Enter author name">
+                    </div>
+
+                    <div class="checkbox-group">
+                        <p class="status-title">Current Status of the book</p>
+                        
+                        <label class="checkbox-item" for="marked">
+                            <input type="checkbox" id="marked" name="marked">
+                            <span>Mark the Book</span>
+                        </label>
+
+                        <label class="checkbox-item" for="read">
+                            <input type="checkbox" id="read" name="read">
+                            <span>Currently Reading</span>
+                        </label>
+
+                        <label class="checkbox-item" for="finished">
+                            <input type="checkbox" id="finished" name="finished">
+                            <span>Finished the Book</span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Add Book</button>
+                </form>
+            </aside>
+
+            <main class="main-layout">
+                <div class="content-container">
+                    <div class="content-title-box">
+                        <nav>
+                            <ul>
+                                <li><a class="tab-link active" onclick="switchTab(event, 'marked-section')">Marked</a></li>
+                                <li><a class="tab-link" onclick="switchTab(event, 'reading-section')">Reading</a></li>
+                                <li><a class="tab-link" onclick="switchTab(event, 'finished-section')">Finished</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="content-display-area">
+                        <!-- Marked Section (Shown by default) -->
+                        <div id="marked-section" class="tab-content active-content">
+                            <p>Your marked books will appear here...</p>
+                        </div>
+
+                        <!-- Reading Section (Hidden by default) -->
+                        <div id="reading-section" class="tab-content">
+                            <p>Books you are currently reading will appear here...</p>
+                        </div>
+
+                        <!-- Finished Section (Hidden by default) -->
+                        <div id="finished-section" class="tab-content">
+                            <p>Your finished books will appear here...</p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+</body>
+</html>
