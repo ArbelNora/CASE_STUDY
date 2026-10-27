@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #f1f5f9;
+    background-color: #0b0f19;
     padding: 30px 20px;
     color: #334155;
     line-height: 1.5;
@@ -490,13 +490,24 @@ aside.sidebar {
     background-color: #334155;
 }
 
+/* ==========================================
+   DEFAULT DARK THEME (When light-mode is OFF)
+   ========================================== */
+body {
+    background-color: #0b0f19 !important; /* Pure black outer background */
+    color: #f8fafc !important;
+}
+
+/* ==========================================
+   LIGHT MODE OVERRIDES (When light-mode is ON)
+   ========================================== */
 body.light-mode {
     background-color: #f1f5f9 !important;
     color: #0f172a !important;
 }
 
 body.light-mode header {
-    background-color: #ffffff !important;
+    background-color: #31325c !important;
     border-bottom: 1px solid #cbd5e1 !important;
 }
 
@@ -506,15 +517,19 @@ body.light-mode h2,
 body.light-mode h3, 
 body.light-mode h4, 
 body.light-mode p, 
-body.light-mode label {
-    color: #0f172a !important;
+body.light-mode label,
+body.light-mode .status-title,
+body.light-mode .checkbox-item span {
+    color: #fefeff !important;
 }
 
 body.light-mode .sidebar,
 body.light-mode .content-container,
-body.light-mode .main-layout {
-    background-color: #ffffff !important;
-    border-color: #cbd5e1 !important;
+body.light-mode .main-layout,
+body.light-mode .content-display-area,
+body.light-mode .tab-content {
+    background-color: #31325c !important;
+    border-color: #31325c !important;
 }
 
 body.light-mode input, 
