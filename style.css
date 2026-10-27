@@ -11,6 +11,16 @@
     left: 32px;
 }
 
+.sub-body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(#f4f7f6, #4f46e5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f7f6;
@@ -47,7 +57,7 @@ body {
 .sign_up_container {
     background: #ffffff;
     padding: 30px 40px;
-    border-radius: 10px;
+    border-radius: 16px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 400px;
@@ -218,6 +228,18 @@ body {
     background-color: #e2e8f0;
     color: #0f172a;
     transform: translateY(-2px);
+}
+
+.title-wrap {
+    background-color: #4338ca;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 28px;
+    margin-bottom: 30px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px -2px rgba(67, 56, 202, 0.2);
 }
 
 /* --- Footer --- */
