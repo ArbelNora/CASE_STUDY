@@ -255,3 +255,44 @@ body.light-mode .appearance-card {
 body.light-mode .settings-form-group label {
     color: #334155;
 }
+
+/* ==========================================
+   MOBILE RESPONSIVE FIXES
+   ========================================== */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .brand_logo {
+        padding-right: 0 !important;
+        font-size: 22px;
+    }
+
+    .header-left {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .layout-wrapper {
+        flex-direction: column !important; /* Stacks sidebar on top of main content */
+        gap: 16px;
+    }
+
+    aside.sidebar {
+        width: 100% !important; /* Makes sidebar span full width on mobile */
+        min-height: auto !important;
+    }
+
+    .main-layout {
+        width: 100% !important;
+        min-height: auto !important;
+    }
+}
