@@ -45,7 +45,9 @@ header {
 }
 
 .welcome-text {
-    padding-left: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     font-size: 15px;
     font-weight: 600;
     color: #f1f5f9;
@@ -401,6 +403,7 @@ aside.sidebar {
     font-size: 28px;
     font-weight: 900;
     letter-spacing: 2px;
+    padding-right: 400px;
     color: #d4d4e5; /* Primary brand color */
     text-decoration: none;
     text-transform: uppercase;
