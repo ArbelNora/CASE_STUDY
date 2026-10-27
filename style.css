@@ -1,13 +1,14 @@
 .navbar {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 28px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #4f46e5;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, color 0.2s ease;
     position: absolute;
     top: 24px;
     left: 32px;
-    color: white;
-    background: darkblue;
-    display: inline-block;
-    padding: 20px;
-    border: thick solid darkblue;
 }
 
 body {

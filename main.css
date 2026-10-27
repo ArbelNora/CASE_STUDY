@@ -45,6 +45,7 @@ header {
 }
 
 .welcome-text {
+    padding-left: 8px;
     font-size: 15px;
     font-weight: 600;
     color: #f1f5f9;
@@ -400,7 +401,7 @@ aside.sidebar {
     font-size: 28px;
     font-weight: 900;
     letter-spacing: 2px;
-    color: #4f46e5; /* Primary brand color */
+    color: #d4d4e5; /* Primary brand color */
     text-decoration: none;
     text-transform: uppercase;
     transition: transform 0.2s ease, color 0.2s ease;
