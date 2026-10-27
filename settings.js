@@ -83,16 +83,17 @@ onAuthStateChanged(auth, async (user) => {
 // ==========================================
 // 4. APPEARANCE (Dark / Light Mode Toggle)
 // ==========================================
-const themeToggleBtn = document.getElementById("theme-toggle-btn");
-
-// Check saved theme preference on load
 const currentTheme = localStorage.getItem("theme") || "dark";
 if (currentTheme === "light") {
     document.body.classList.add("light-mode");
-    if (themeToggleBtn) themeToggleBtn.textContent = "☀️ Light Mode";
 }
 
+const themeToggleBtn = document.getElementById("theme-toggle-btn");
 if (themeToggleBtn) {
+    if (currentTheme === "light") {
+        themeToggleBtn.textContent = " Light Mode";
+    }
+
     themeToggleBtn.addEventListener("click", () => {
         document.body.classList.toggle("light-mode");
         

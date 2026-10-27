@@ -490,3 +490,58 @@ aside.sidebar {
     background-color: #334155;
 }
 
+body.light-mode {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+}
+
+body.light-mode header {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid #cbd5e1 !important;
+}
+
+body.light-mode .brand_logo,
+body.light-mode #username-display,
+body.light-mode h2, 
+body.light-mode h3, 
+body.light-mode h4, 
+body.light-mode p, 
+body.light-mode label {
+    color: #0f172a !important;
+}
+
+body.light-mode .sidebar,
+body.light-mode .content-container,
+body.light-mode .main-layout {
+    background-color: #ffffff !important;
+    border-color: #cbd5e1 !important;
+}
+
+body.light-mode input, 
+body.light-mode select {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+body.light-mode .book-card {
+    background-color: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .book-card h3,
+body.light-mode .book-card p {
+    color: #1e293b !important;
+}
+
+body.light-mode .dropdown-content,
+body.light-mode .book-dropdown-content {
+    background-color: #ffffff !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+body.light-mode .dropdown-content a,
+body.light-mode .book-dropdown-content button {
+    color: #0f172a !important;
+}

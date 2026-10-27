@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Website Layout - Settings</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="settings.css">
 </head>
 <body>
     <script type="module" src="settings.js"></script>
@@ -12,62 +12,62 @@
 
         <div class="layout-wrapper">
             <!-- Left Sidebar Navigation for Settings -->
-            <aside class="sidebar" style="padding: 1.5rem; display: flex; flex-direction: column; gap: 0.75rem; background: #0f172a; border-right: 1px solid #1e293b;">
-                <h3 style="color: #f8fafc; font-size: 1.1rem; margin-bottom: 1rem; font-weight: 600;">Settings Menu</h3>
+            <aside class="sidebar">
+                <h3 class="sidebar-title">Settings Menu</h3>
                 
-                <button class="tab-link active" onclick="switchSettingsTab(event, 'account-settings')" style="text-align: left; background: #1e293b; color: #f8fafc; border: none; padding: 0.75rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500;">👤 Account</button>
-                <button class="tab-link" onclick="switchSettingsTab(event, 'appearance-settings')" style="text-align: left; background: transparent; color: #94a3b8; border: none; padding: 0.75rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500;">🌙 Appearance</button>
-                <button class="tab-link" onclick="switchSettingsTab(event, 'security-settings')" style="text-align: left; background: transparent; color: #94a3b8; border: none; padding: 0.75rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 500;">🔒 Security</button>
+                <button class="tab-link active" onclick="switchSettingsTab(event, 'account-settings')"> Account</button>
+                <button class="tab-link" onclick="switchSettingsTab(event, 'appearance-settings')"> Appearance</button>
+                <button class="tab-link" onclick="switchSettingsTab(event, 'security-settings')"> Security</button>
                 
-                <hr style="border: 0; border-top: 1px solid #1e293b; margin: 1rem 0;">
+                <hr class="sidebar-divider">
                 
-                <a href="main.html" style="color: #94a3b8; text-decoration: none; font-size: 0.9rem; padding: 0.5rem 0; font-weight: 500;">← Back to Dashboard</a>
+                <a href="main.html" class="back-link">← Back to Dashboard</a>
             </aside>
 
             <!-- Right Main Content Area -->
             <main class="main-layout">
                 <div class="content-container">
-                    <div class="settings-display-area" style="padding: 2.5rem; color: #f8fafc;">
+                    <div class="settings-display-area">
                         
                         <!-- Account Settings Tab Content -->
                         <div id="account-settings" class="settings-tab-content" style="display: block;">
-                            <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Account Settings</h2>
-                            <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 2rem;">Manage your account details and profile information.</p>
+                            <h2>Account Settings</h2>
+                            <p>Manage your account details and profile information.</p>
 
-                            <div class="settings-form-group" style="margin-bottom: 1.5rem; max-width: 450px;">
-                                <label for="settings-username" style="display: block; font-size: 0.9rem; font-weight: 500; color: #e2e8f0; margin-bottom: 0.5rem;">Username</label>
-                                <input type="text" id="settings-username" readonly style="width: 100%; background-color: #1e293b; border: 1px solid #334155; border-radius: 6px; padding: 0.75rem 1rem; color: #f8fafc; font-size: 0.95rem; outline: none;">
+                            <div class="settings-form-group">
+                                <label for="settings-username">Username</label>
+                                <input type="text" id="settings-username" readonly>
                             </div>
 
-                            <div class="settings-form-group" style="margin-bottom: 2rem; max-width: 450px;">
-                                <label for="settings-email" style="display: block; font-size: 0.9rem; font-weight: 500; color: #e2e8f0; margin-bottom: 0.5rem;">Email Address</label>
-                                <input type="email" id="settings-email" readonly style="width: 100%; background-color: #1e293b; border: 1px solid #334155; border-radius: 6px; padding: 0.75rem 1rem; color: #f8fafc; font-size: 0.95rem; outline: none;">
+                            <div class="settings-form-group">
+                                <label for="settings-email">Email Address</label>
+                                <input type="email" id="settings-email" readonly>
                             </div>
 
-                            <button id="logout-btn" style="background-color: #ef4444; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.2s;">Log Out</button>
+                            <button id="logout-btn">Log Out</button>
                         </div>
 
                         <!-- Appearance Settings Tab Content -->
                         <div id="appearance-settings" class="settings-tab-content" style="display: none;">
-                            <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Appearance</h2>
-                            <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 2rem;">Customize how Archive Ledger looks on your screen.</p>
+                            <h2>Appearance</h2>
+                            <p>Customize how Archive Ledger looks on your screen.</p>
 
-                            <div style="display: flex; align-items: center; justify-content: space-between; max-width: 450px; background: #1e293b; padding: 1.2rem; border-radius: 8px; border: 1px solid #334155;">
+                            <div class="appearance-card">
                                 <div>
-                                    <h4 style="color: #f8fafc; margin: 0 0 0.2rem 0; font-size: 1rem;">Theme Preference</h4>
-                                    <span style="font-size: 0.85rem; color: #94a3b8;">Switch between dark and light mode</span>
+                                    <h4>Theme Preference</h4>
+                                    <span>Switch between dark and light mode</span>
                                 </div>
-                                <button id="theme-toggle-btn" style="background-color: #334155; color: white; border: none; padding: 0.6rem 1.2rem; border-radius: 6px; cursor: pointer; font-weight: 500;">🌙 Dark Mode</button>
+                                <button id="theme-toggle-btn"> Dark Mode</button>
                             </div>
                         </div>
 
                         <!-- Security Settings Tab Content -->
                         <div id="security-settings" class="settings-tab-content" style="display: none;">
-                            <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">Security</h2>
-                            <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 2rem;">Manage your password and account security.</p>
+                            <h2>Security</h2>
+                            <p>Manage your password and account security.</p>
 
-                            <div style="max-width: 450px;">
-                                <button id="change-password-btn" style="background-color: #3b82f6; color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.2s;">Change Password</button>
+                            <div class="security-card">
+                                <button id="change-password-btn">Change Password</button>
                             </div>
                         </div>
 
