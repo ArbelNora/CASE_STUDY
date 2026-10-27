@@ -87,21 +87,32 @@ window.onclick = function(event) {
 // Handle Sign Up
 const signUpForm = document.getElementById("signup-form");
 if (signUpForm) {
-    signUpForm.addEventListener("submit", (e) => {
+    signUpForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         
         const email = document.getElementById("signup-email").value;
+        const username = document.getElementById("signup-username").value;
         const password = document.getElementById("signup-password").value;
 
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                alert("Account created successfully!");
-                window.location.href = "main.html";
-            })
-            .catch((error) => {
-                console.error("Error signing up:", error.message);
-                alert(error.message);
+        try {
+            // 1. Create user with Firebase Authentication
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            // 2. Save additional user info (like username) into Firestore "users" collection
+            await addDoc(collection(db, "users"), {
+                userId: user.uid,
+                username: username,
+                email: email,
+                createdAt: new Date()
             });
+
+            alert("Account created successfully!");
+            window.location.href = "main.html";
+        } catch (error) {
+            console.error("Error signing up:", error.message);
+            alert(error.message);
+        }
     });
 }
 
