@@ -15,10 +15,11 @@ import {
     addDoc, 
     getDocs, 
     query, 
-    where 
+    where, 
+    deleteDoc, 
+    doc 
 } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-firestore.js";
 
-// Your web app's Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyD6QxcNAaVikp2Coq1NceO0cryBZp_mvks",
     authDomain: "booktracker-b92f3.firebaseapp.com",
@@ -29,7 +30,6 @@ const firebaseConfig = {
     measurementId: "G-RQMJ6VECKX"
 };
 
-// Initialize Firebase services
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
@@ -41,32 +41,25 @@ const db = getFirestore(app);
 // ==========================================
 
 window.switchTab = function(evt, sectionId) {
-    // 1. Hide all tab contents
     const contents = document.getElementsByClassName("tab-content");
     for (let i = 0; i < contents.length; i++) {
         contents[i].classList.remove("active-content");
     }
 
-    // 2. Remove the 'active' class from all navigation links
     const links = document.getElementsByClassName("tab-link");
     for (let i = 0; i < links.length; i++) {
         links[i].classList.remove("active");
     }
 
-    // 3. Show the target content section
     document.getElementById(sectionId).classList.add("active-content");
-
-    // 4. Add the 'active' class to the clicked tab link
     evt.currentTarget.classList.add("active");
 };
 
-// Toggle the drop-down menu open/closed
 window.toggleDropdown = function() {
     const dropdownMenu = document.getElementById("dropdown-menu");
     dropdownMenu.classList.toggle("show");
 };
 
-// Close the dropdown if the user clicks outside of the menu
 window.onclick = function(event) {
     if (!event.target.matches('.menu-btn') && !event.target.closest('.menu-btn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
@@ -84,7 +77,6 @@ window.onclick = function(event) {
 // 3. AUTHENTICATION (Sign Up & Log In)
 // ==========================================
 
-// Handle Sign Up
 const signUpForm = document.getElementById("signup-form");
 if (signUpForm) {
     signUpForm.addEventListener("submit", async (e) => {
@@ -95,11 +87,9 @@ if (signUpForm) {
         const password = document.getElementById("signup-password").value;
 
         try {
-            // 1. Create user with Firebase Authentication
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            // 2. Save additional user info (like username) into Firestore "users" collection
             await addDoc(collection(db, "users"), {
                 userId: user.uid,
                 username: username,
@@ -116,7 +106,6 @@ if (signUpForm) {
     });
 }
 
-// Handle Log In
 const logInForm = document.getElementById("login-form");
 if (logInForm) {
     logInForm.addEventListener("submit", (e) => {
@@ -126,7 +115,7 @@ if (logInForm) {
         const password = document.getElementById("login-password").value;
 
         signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
+            .then(() => {
                 alert("Logged in successfully!");
                 window.location.href = "main.html";
             })
@@ -139,14 +128,10 @@ if (logInForm) {
 
 
 // ==========================================
-// 4. FIRESTORE BOOK MANAGEMENT & RENDERING
+// 4. FIRESTORE BOOK MANAGEMENT & RENDER
 // ==========================================
 
-// Function to fetch and display books under tabs
-async function loadUserBooks() {
-    const user = auth.currentUser;
-    if (!user) return;
-
+async function loadUserBooks(user) {
     const markedContainer = document.getElementById("marked-section");
     const readingContainer = document.getElementById("reading-section");
     const finishedContainer = document.getElementById("finished-section");
@@ -169,13 +154,23 @@ async function loadUserBooks() {
             return;
         }
 
-        querySnapshot.forEach((doc) => {
-            const book = doc.data();
+        querySnapshot.forEach((docSnap) => {
+            const book = docSnap.data();
+            const docId = docSnap.id;
+
+            let timeString = "Recently added";
+            if (book.createdAt) {
+                const date = book.createdAt.toDate ? book.createdAt.toDate() : new Date(book.createdAt);
+                timeString = date.toLocaleString();
+            }
+
             const bookCard = `
-                <div class="book-card" style="background: #1e293b; padding: 1rem; margin-bottom: 1rem; border-radius: 6px; border: 1px solid #334155;">
+                <div class="book-card" style="background: #1e293b; padding: 1rem; margin-bottom: 1rem; border-radius: 6px; border: 1px solid #334155; position: relative;">
                     <h3 style="color: #f8fafc; margin-bottom: 0.3rem;">${book.title}</h3>
                     <p style="color: #cbd5e1; font-size: 0.9rem; margin: 0.2rem 0;"><strong>Author:</strong> ${book.author}</p>
                     <p style="color: #cbd5e1; font-size: 0.9rem; margin: 0.2rem 0;"><strong>Genre:</strong> ${book.genre || "N/A"}</p>
+                    <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 0.5rem;">Submitted: ${timeString}</p>
+                    <button onclick="window.deleteBook('${docId}')" style="background-color: #ef4444; color: white; border: none; padding: 0.4rem 0.8rem; border-radius: 4px; cursor: pointer; font-size: 0.8rem; margin-top: 0.5rem;">Delete</button>
                 </div>
             `;
 
@@ -188,14 +183,72 @@ async function loadUserBooks() {
     }
 }
 
-// Automatically trigger book loading when auth state is confirmed
-onAuthStateChanged(auth, (user) => {
+window.deleteBook = async function(docId) {
+    if (confirm("Are you sure you want to delete this book?")) {
+        try {
+            await deleteDoc(doc(db, "books", docId));
+            alert("Book deleted successfully!");
+            loadUserBooks(auth.currentUser);
+        } catch (error) {
+            console.error("Error deleting book:", error);
+            alert("Failed to delete book.");
+        }
+    }
+};
+
+
+// ==========================================
+// 5. UNIFIED AUTH STATE & PROFILE LOADER
+// ==========================================
+
+onAuthStateChanged(auth, async (user) => {
     if (user) {
-        loadUserBooks();
+        // 1. Populate email on settings page if input exists
+        const emailInput = document.getElementById("settings-email");
+        if (emailInput) {
+            emailInput.value = user.email;
+        }
+
+        // 2. Fetch and display username for header and settings
+        const welcomeEl = document.getElementById("username-display");
+        const settingsUsernameInput = document.getElementById("settings-username");
+
+        try {
+            const usersRef = collection(db, "users");
+            const q = query(usersRef, where("userId", "==", user.uid));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                querySnapshot.forEach((docSnap) => {
+                    const userData = docSnap.data();
+                    const username = userData.username || "User";
+
+                    if (welcomeEl) {
+                        welcomeEl.textContent = `Welcome, ${username}!`;
+                    }
+                    if (settingsUsernameInput) {
+                        settingsUsernameInput.value = username;
+                    }
+                });
+            }
+        } catch (error) {
+            console.error("Error fetching username:", error);
+        }
+
+        // 3. Load books if user is on main page
+        loadUserBooks(user);
+    } else {
+        if (!window.location.href.includes("log_in.html") && !window.location.href.includes("sign_up.html") && !window.location.href.includes("index.html")) {
+            window.location.href = "log_in.html";
+        }
     }
 });
 
-// Handle Adding a Book from main.html form
+
+// ==========================================
+// 6. FORM HANDLERS (Add Book & Logout)
+// ==========================================
+
 const bookForm = document.querySelector(".input_book");
 if (bookForm) {
     bookForm.addEventListener("submit", async (e) => {
@@ -212,8 +265,7 @@ if (bookForm) {
         const authorName = document.getElementById("author").value;
         const genreName = document.getElementById("genre").value;
 
-        // Determine status based on checked checkboxes
-        let status = "marked"; // default
+        let status = "marked";
         if (document.getElementById("read").checked) status = "reading";
         if (document.getElementById("finished").checked) status = "finished";
 
@@ -229,10 +281,22 @@ if (bookForm) {
 
             alert("Book added successfully!");
             bookForm.reset();
-            loadUserBooks(); // Refresh book list immediately
+            loadUserBooks(user);
         } catch (error) {
             console.error("Error adding book: ", error);
             alert("Failed to add book.");
         }
+    });
+}
+
+const logoutBtn = document.getElementById("logout-btn");
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+        auth.signOut().then(() => {
+            alert("Logged out successfully!");
+            window.location.href = "log_in.html";
+        }).catch((error) => {
+            console.error("Error signing out:", error);
+        });
     });
 }
