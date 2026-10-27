@@ -10,15 +10,23 @@
     <script src="script.js"></script>
     <div class="container">
         <header>
+            <a href="home.html" class="brand_logo">ARCHIVE LEDGER</a>
+        
             <div class="header-left">
                 <img src="d_silhouette[2].jpg" alt="Profile Picture" class="profile-pic">
                 <div class="welcome-text">Welcome, User!</div>
             </div>
-            <button class="menu-btn" aria-label="Main Menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
+            <div class="drop">
+                <button class="menu-btn" aria-label="Main Menu" onclick="toggleDropdown()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div id="dropdown-menu" class="dropdown-content">
+                    <a href="index.html">Dark Mode</a>
+                    <a href="marked.html">Log out</a>
+                 </div>
+            </div>
         </header>
 
         <div class="layout-wrapper">
