@@ -1,6 +1,6 @@
-// ==========================================
-// 1. IMPORTS & FIREBASE INITIALIZATION
-// ==========================================
+
+// IMPORTS & FIREBASE INITIALIZATION
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-analytics.js";
 import { 
@@ -36,9 +36,8 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 
-// ==========================================
-// 2. GLOBAL UI FUNCTIONS (Tabs & Dropdown)
-// ==========================================
+
+// GLOBAL UI FUNCTIONS (Tabs & Dropdown)
 
 window.switchTab = function(evt, sectionId) {
     const contents = document.getElementsByClassName("tab-content");
@@ -73,9 +72,9 @@ window.onclick = function(event) {
 };
 
 
-// ==========================================
-// 3. AUTHENTICATION (Sign Up & Log In)
-// ==========================================
+
+//  AUTHENTICATION (Sign Up & Log In)
+
 
 const signUpForm = document.getElementById("signup-form");
 if (signUpForm) {
@@ -127,9 +126,9 @@ if (logInForm) {
 }
 
 
-// ==========================================
-// 4. FIRESTORE BOOK MANAGEMENT & RENDER
-// ==========================================
+
+//  FIRESTORE BOOK MANAGEMENT & RENDER
+
 
 async function loadUserBooks(user) {
     const markedContainer = document.getElementById("marked-section");
@@ -197,9 +196,9 @@ window.deleteBook = async function(docId) {
 };
 
 
-// ==========================================
-// 5. UNIFIED AUTH STATE & PROFILE LOADER
-// ==========================================
+
+// UNIFIED AUTH STATE & PROFILE LOADER
+
 
 onAuthStateChanged(auth, async (user) => {
     if (user) {
@@ -245,9 +244,9 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 
-// ==========================================
-// 6. FORM HANDLERS (Add Book & Logout)
-// ==========================================
+
+// FORM HANDLERS (Add Book & Logout)
+
 
 const bookForm = document.querySelector(".input_book");
 if (bookForm) {

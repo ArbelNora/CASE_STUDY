@@ -1,6 +1,6 @@
-// ==========================================
-// 1. IMPORTS & FIREBASE INITIALIZATION
-// ==========================================
+
+// IMPORTS & FIREBASE INITIALIZATION
+
 import { initializeApp } from "https://www.gstatic.com/firebasejs/13.1.0/firebase-app.js";
 import { 
     getAuth, 
@@ -30,9 +30,9 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ==========================================
-// 2. SETTINGS SUB-NAVIGATION TABS
-// ==========================================
+
+// SETTINGS SUB-NAVIGATION TABS
+
 window.switchSettingsTab = function(evt, tabId) {
     const contents = document.getElementsByClassName("settings-tab-content");
     for (let i = 0; i < contents.length; i++) {
@@ -50,9 +50,9 @@ window.switchSettingsTab = function(evt, tabId) {
     evt.currentTarget.style.color = "#f8fafc";
 };
 
-// ==========================================
-// 3. LOAD USER DATA & AUTH STATE
-// ==========================================
+
+// LOAD USER DATA & AUTH STATE
+
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         // Populate Email
@@ -80,9 +80,9 @@ onAuthStateChanged(auth, async (user) => {
     }
 });
 
-// ==========================================
-// 4. APPEARANCE (Dark / Light Mode Toggle)
-// ==========================================
+
+// APPEARANCE (Dark / Light Mode Toggle)
+
 const currentTheme = localStorage.getItem("theme") || "dark";
 if (currentTheme === "light") {
     document.body.classList.add("light-mode");
@@ -108,9 +108,9 @@ if (themeToggleBtn) {
     });
 }
 
-// ==========================================
-// 5. SECURITY (Change Password via Email)
-// ==========================================
+
+//  SECURITY (Change Password via Email)
+
 const changePasswordBtn = document.getElementById("change-password-btn");
 if (changePasswordBtn) {
     changePasswordBtn.addEventListener("click", async () => {
@@ -129,9 +129,9 @@ if (changePasswordBtn) {
     });
 }
 
-// ==========================================
-// 6. LOGOUT HANDLER
-// ==========================================
+
+// LOGOUT HANDLER
+
 const logoutBtn = document.getElementById("logout-btn");
 if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
